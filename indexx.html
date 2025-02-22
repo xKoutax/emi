@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perdón y Futuro</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #6b2636;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 4em;
+            font-weight: bold;
+            color: #ff5f6d;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .story {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        .gif {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .button {
+            display: inline-block;
+            background: #ff5f6d;
+            color: white;
+            padding: 12px 24px;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #e84362;
+            transform: scale(1.1);
+        }
+        iframe {
+            display: none;
+        }
+    </style>
+    <script>
+        let step = 0;
+        const storySteps = [
+            { text: "A veces cometemos errores, y yo lo hice...", gif: "https://i.pinimg.com/originals/42/89/42/428942929326c43c7695f1c5be52136d.gif" },
+            { text: "Pero cada error me enseñó cuánto significas para mí...", gif: "https://i.pinimg.com/originals/4b/6d/03/4b6d030d3880438063cc700cd44d7cc2.gif" },
+            { text: "Hoy quiero pedirte perdón, de todo corazón...", gif: "https://i.pinimg.com/originals/d9/11/a6/d911a60fbaef775210de355e75b10c25.gif" },
+            { text: "No quiero perderte, quiero construir un futuro a tu lado...", gif: "https://i.gifer.com/A7UI.gif", final: true }
+        ];
+
+        function nextStep() {
+            if (storySteps[step].final) {
+                document.getElementById("story").innerText = "Tomémonos de la mano y construyamos algo hermoso...";
+                document.getElementById("gif").src = "https://tenor.com/view/vida-amor-besos-gif-7887992996957106885.gif";
+                document.getElementById("buttons").innerHTML = "";
+            } else {
+                step++;
+                document.getElementById("story").innerText = storySteps[step].text;
+                document.getElementById("gif").src = storySteps[step].gif;
+                if (storySteps[step].final) {
+                    document.getElementById("buttons").innerHTML = '<button class="button" onclick="nextStep()">Sí, construyamos juntos</button>';
+                }
+            }
+        }
+
+        function playMusic() {
+            let iframe = document.getElementById("music");
+            iframe.src += "&autoplay=1";
+            iframe.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Perdóname y construyamos juntos</h1>
+    <div class="container">
+        <p id="story" class="story">A veces cometemos errores, y yo lo hice...</p>
+        <img id="gif" src="https://i.pinimg.com/originals/42/89/42/428942929326c43c7695f1c5be52136d.gif" class="gif" alt="Historia de perdón">
+        <div id="buttons">
+            <button class="button" onclick="nextStep()">Siguiente</button>
+            <button class="button" onclick="playMusic()">🎵 Reproducir Música</button>
+        </div>
+    </div>
+    <iframe id="music" width="0" height="0" src="https://www.youtube.com/embed/CQ_mQHTTyss?enablejsapi=1" allow="autoplay"></iframe>
+</body>
+</html>
